@@ -13,7 +13,21 @@ class Flags2App(App):
         print("draw_cross")
         display.fill(bgColor)
         display.fill_rect(int(DISPLAY_WIDTH/2 - CROSS_WIDTH/2), 0, CROSS_WIDTH, DISPLAY_HEIGH, crossColor)
-        display.fill_rect(0, int(DISPLAY_HEIGH/2 - CROSS_WIDTH/2 - CROSS_WIDTH), DISPLAY_WIDTH, CROSS_WIDTH, crossColor)
+        display.fill_rect(0, int(DISPLAY_HEIGH/2 - CROSS_WIDTH/2 + CROSS_WIDTH), DISPLAY_WIDTH, CROSS_WIDTH, crossColor)
+    
+    def draw_double_cross(self, bgColor, outerCrossColor, innerCrossColor):
+        print("draw_double_cross")
+        display.fill(bgColor)
+
+        # Outer cross
+        outerCrossWidth = int(CROSS_WIDTH + CROSS_WIDTH * 0.75)
+        display.fill_rect(int(DISPLAY_WIDTH/2 - outerCrossWidth/2), 0, outerCrossWidth, DISPLAY_HEIGH, outerCrossColor)
+        display.fill_rect(0, int(DISPLAY_HEIGH/2 - outerCrossWidth/2 + CROSS_WIDTH), DISPLAY_WIDTH, outerCrossWidth, outerCrossColor)
+
+        # Inner cross
+        innerCrossWidth = int(CROSS_WIDTH - CROSS_WIDTH * 0.25)
+        display.fill_rect(int(DISPLAY_WIDTH/2 - innerCrossWidth/2), 0, innerCrossWidth, DISPLAY_HEIGH, innerCrossColor)
+        display.fill_rect(0, int(DISPLAY_HEIGH/2 - innerCrossWidth/2 + CROSS_WIDTH), DISPLAY_WIDTH, innerCrossWidth, innerCrossColor)
 
     def draw_sweden(self):
         print("draw_sweden")
@@ -27,6 +41,14 @@ class Flags2App(App):
         print("draw_finland")
         self.draw_cross(WHITE, BLUE)
 
+    def draw_norway(self):
+        print("draw_norway")
+        self.draw_double_cross(RED, WHITE, BLUE)
+
+    def draw_iceland(self):
+        print("draw_iceland")
+        self.draw_double_cross(BLUE, WHITE, RED)
+
     def draw_rainbow(self):
         display.fill(RED)
         display.fill_rect(22, 0, 23, 240, color565(255, 153, 0))
@@ -38,7 +60,9 @@ class Flags2App(App):
     flagFuncs = [
         draw_sweden, 
         draw_denmark, 
-        draw_finland, 
+        draw_finland,
+        draw_norway, 
+        draw_iceland, 
         draw_rainbow
     ]
 
